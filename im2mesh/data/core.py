@@ -1,8 +1,10 @@
+from importlib.abc import Loader
 import os
 import logging
 from torch.utils import data
 import numpy as np
 import yaml
+from yaml import CLoader as Loader
 
 
 logger = logging.getLogger(__name__)
@@ -65,7 +67,7 @@ class Shapes3dDataset(data.Dataset):
 
         if os.path.exists(metadata_file):
             with open(metadata_file, 'r') as f:
-                self.metadata = yaml.load(f)
+                self.metadata = yaml.load(f, Loader=Loader)
         else:
             self.metadata = {
                 c: {'id': c, 'name': 'n/a'} for c in categories
