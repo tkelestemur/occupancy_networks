@@ -33,8 +33,6 @@ mcubes_module = Extension(
         'im2mesh/utils/libmcubes/marchingcubes.cpp'
     ],
     language='c++',
-    extra_compile_args=['-std=c++11'],
-    include_dirs=[numpy_include_dir]
 )
 
 # triangle hash (efficient mesh intersection)
@@ -107,5 +105,6 @@ setup(
     ext_modules=cythonize(ext_modules),
     cmdclass={
         'build_ext': BuildExtension
-    }
+    },
+    include_dirs=[numpy_include_dir]
 )
